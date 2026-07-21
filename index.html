@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HKN Libas PK | Luxury Pakistani Fashion</title>
+<meta name="description" content="HKN Libas PK - Premium Ladies & Men's Pakistani Clothing. Order directly on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0a0908;
+  --charcoal:#141311;
+  --charcoal-2:#1c1a17;
+  --gold:#c9a24a;
+  --gold-light:#e6c977;
+  --emerald:#0f6b4c;
+  --emerald-light:#1c9d70;
+  --ivory:#f3ede0;
+  --ivory-dim:#c9c2b3;
+  --line:rgba(201,162,74,0.18);
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--black);
+  color:var(--ivory);
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Playfair Display',serif;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+.container{max-width:1280px;margin:0 auto;padding:0 28px;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+::selection{background:var(--gold);color:var(--black);}
+
+/* ===== eyebrow / labels ===== */
+.eyebrow{
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--gold-light);font-weight:600;
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(10,9,8,0.75);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(201,162,74,0.08),0 12px 30px rgba(0,0,0,0.25);
+  transition:padding .3s ease;
+}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 28px 0;max-width:1280px;margin:0 auto;}
+.nav-wrap.logo-row{justify-content:center;padding-bottom:14px;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{
+  width:44px;height:44px;border-radius:50%;
+  background:conic-gradient(from 180deg,var(--gold),var(--emerald-light),var(--gold-light),var(--gold));
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.logo-mark::before{
+  content:"HKN";font-family:'Playfair Display',serif;font-weight:700;font-size:11px;
+  background:var(--black);color:var(--gold-light);width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;letter-spacing:0.5px;
+}
+.logo-text{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;letter-spacing:0.5px;}
+.logo-text span{color:var(--gold-light);}
+.logo-text small{display:block;font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:3px;color:var(--emerald-light);font-weight:500;text-transform:uppercase;}
+
+nav.main-nav{display:flex;align-items:center;justify-content:center;gap:38px;padding:0 28px 16px;border-top:1px solid var(--line);padding-top:14px;max-width:1280px;margin:0 auto;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;}
+nav.main-nav::-webkit-scrollbar{display:none;}
+nav.main-nav>ul{display:flex;gap:38px;flex-wrap:wrap;justify-content:center;}
+nav.main-nav>ul>li{position:relative;padding:6px 0;flex-shrink:0;}
+nav.main-nav>ul>li>a{font-size:13.5px;letter-spacing:0.5px;font-weight:500;color:var(--ivory-dim);transition:color .25s;position:relative;white-space:nowrap;}
+nav.main-nav>ul>li>a:hover{color:var(--gold-light);}
+nav.main-nav>ul>li>a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold);transition:width .25s;}
+nav.main-nav>ul>li:hover>a::after{width:100%;}
+
+.mega-dropdown{
+  position:fixed;top:0;left:50%;transform:translateX(-50%) translateY(-10px);
+  background:var(--charcoal-2);border:1px solid var(--gold);border-radius:10px;
+  min-width:190px;padding:10px;opacity:0;visibility:hidden;transition:opacity .2s ease,transform .2s ease;
+  box-shadow:0 20px 45px rgba(0,0,0,0.6);z-index:2000;
+}
+.mega-dropdown.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.mega-dropdown a{display:block;padding:10px 14px;font-size:13px;border-radius:6px;color:var(--ivory-dim);transition:all .2s;}
+.mega-dropdown a:hover{background:rgba(201,162,74,0.1);color:var(--gold-light);padding-left:18px;}
+
+
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;position:relative;display:flex;align-items:center;
+  padding:150px 28px 90px;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(15,107,76,0.18),transparent 45%),
+    radial-gradient(circle at 85% 75%,rgba(201,162,74,0.15),transparent 50%),
+    var(--black);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(201,162,74,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(201,162,74,0.05) 1px,transparent 1px);
+  background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  max-width:1280px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;
+}
+.hero-copy h1{
+  font-size:clamp(38px,5vw,62px);line-height:1.08;font-weight:700;
+  margin:18px 0 22px;
+}
+.hero-copy h1 em{font-style:italic;color:var(--gold-light);}
+.hero-copy p{font-size:15.5px;color:var(--ivory-dim);max-width:440px;line-height:1.7;margin-bottom:34px;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--black);padding:15px 32px;border-radius:30px;font-weight:600;font-size:14px;
+  letter-spacing:0.3px;box-shadow:0 10px 25px rgba(201,162,74,0.3);transition:transform .25s;
+  display:inline-flex;align-items:center;gap:9px;
+}
+.btn-primary:hover{transform:translateY(-3px);}
+.btn-ghost{
+  border:1px solid var(--line);padding:15px 28px;border-radius:30px;font-size:14px;color:var(--ivory);
+  transition:all .25s;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-light);}
+
+.hero-stats{display:flex;gap:38px;margin-top:44px;}
+.hero-stats div strong{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold-light);display:block;}
+.hero-stats div span{font-size:11px;color:var(--ivory-dim);letter-spacing:1px;text-transform:uppercase;}
+
+/* ===== 3D ROTATING RING BANNER ===== */
+.ring-stage{
+  position:relative;height:520px;display:flex;align-items:center;justify-content:center;
+  perspective:1400px;
+}
+.ring{
+  position:relative;width:280px;height:280px;transform-style:preserve-3d;
+  animation:spin 24s linear infinite;
+}
+.ring:hover{animation-play-state:paused;}
+@keyframes spin{from{transform:rotateY(0deg);}to{transform:rotateY(360deg);}}
+.ring-card{
+  position:absolute;top:0;left:0;width:280px;height:280px;
+  border-radius:20px;overflow:hidden;
+  border:1px solid rgba(201,162,74,0.35);
+  box-shadow:0 20px 50px rgba(0,0,0,0.6);
+  backface-visibility:hidden;
+}
+.ring-card img{width:100%;height:100%;object-fit:cover;}
+.ring-card::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(10,9,8,0.85) 100%);
+}
+.ring-center{
+  position:absolute;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,74,0.25),transparent 70%);
+  filter:blur(20px);
+}
+.ring-base{
+  position:absolute;bottom:-30px;width:320px;height:60px;
+  background:radial-gradient(ellipse,rgba(201,162,74,0.25),transparent 70%);
+  filter:blur(10px);
+}
+.orbit-label{
+  position:absolute;top:16px;right:0;
+  background:var(--charcoal-2);border:1px solid var(--line);border-radius:30px;
+  padding:8px 16px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light);
+  display:flex;align-items:center;gap:8px;
+}
+.orbit-label .dot{width:6px;height:6px;border-radius:50%;background:var(--emerald-light);box-shadow:0 0 8px var(--emerald-light);}
+
+/* QR floating card in hero */
+.qr-float{
+  position:absolute;left:6px;bottom:10px;
+  background:var(--charcoal-2);border:1px solid var(--line);border-radius:16px;
+  padding:14px 18px;display:flex;align-items:center;gap:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+.wa-icon-lg{width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.wa-icon-lg::before{
+  content:"";width:26px;height:26px;
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="white" d="M16 8a8 8 0 00-6.93 12.02L8 24l4.1-1.07A8 8 0 1016 8zm0 14.4a6.37 6.37 0 01-3.25-.89l-.23-.14-2.42.63.65-2.36-.15-.24A6.4 6.4 0 1122.4 16 6.4 6.4 0 0116 22.4zm3.5-4.79c-.19-.1-1.13-.56-1.31-.62-.18-.07-.3-.1-.43.1-.13.19-.5.62-.61.75-.11.13-.22.14-.41.05-.19-.1-.8-.29-1.52-.94-.56-.5-.94-1.11-1.05-1.3-.11-.19-.01-.29.08-.39.09-.09.19-.22.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.43-1.04-.59-1.42-.16-.38-.32-.33-.43-.33h-.37c-.13 0-.34.05-.52.24-.18.19-.68.66-.68 1.61s.7 1.87.8 2c.1.13 1.37 2.09 3.32 2.93.46.2.83.32 1.11.41.47.15.9.13 1.24.08.38-.06 1.13-.46 1.29-.9.16-.44.16-.82.11-.9-.05-.08-.18-.13-.37-.23z"/></svg>') no-repeat center/contain;
+}
+.qr-float .qr-text{font-size:11.5px;color:var(--ivory-dim);line-height:1.5;max-width:140px;}
+.qr-float .qr-text b{color:var(--gold-light);display:block;font-size:13px;margin-bottom:2px;}
+.wa-icon{display:inline-flex;align-items:center;}
+
+/* ===== SECTION HEAD ===== */
+.section{padding:100px 0;}
+.page-view{display:none;}
+.page-view.active{display:block;padding-top:160px;}
+.back-home-link{
+  display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--gold-light);
+  margin-bottom:36px;font-weight:500;transition:gap .2s;
+}
+.back-home-link:hover{gap:10px;}
+.section-head{text-align:center;max-width:600px;margin:0 auto 56px;}
+.section-head h2{font-size:clamp(28px,3.5vw,40px);margin:14px 0;font-weight:700;}
+.section-head p{color:var(--ivory-dim);font-size:14.5px;line-height:1.7;}
+.section-head .eyebrow{justify-content:center;}
+.section-head .eyebrow::before,.section-head .eyebrow::after{content:"";width:26px;height:1px;background:var(--gold);}
+
+/* ===== FILTER TABS ===== */
+.filter-bar{display:flex;justify-content:center;gap:12px;margin-bottom:46px;flex-wrap:wrap;}
+.filter-btn{
+  padding:10px 22px;border-radius:30px;border:1px solid var(--line);font-size:13px;color:var(--ivory-dim);
+  transition:all .25s;
+}
+.filter-btn.active,.filter-btn:hover{background:var(--gold);color:var(--black);border-color:var(--gold);font-weight:600;}
+
+/* ===== PRODUCT GRID ===== */
+.product-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:26px;
+}
+.product-card{
+  background:linear-gradient(180deg,var(--charcoal-2),var(--charcoal));border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;position:relative;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 25px 55px rgba(0,0,0,0.55),0 0 0 1px rgba(201,162,74,0.35);border-color:rgba(201,162,74,0.5);}
+.pc-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:#000;}
+.pc-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.product-card:hover .pc-img-wrap img{transform:scale(1.08);}
+.badge-discount{
+  position:absolute;top:12px;left:12px;background:linear-gradient(135deg,var(--emerald),var(--emerald-light));
+  color:#fff;font-size:11px;font-weight:700;padding:5px 11px;border-radius:20px;
+}
+.wishlist-btn{
+  position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;
+  background:rgba(10,9,8,0.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
+  font-size:15px;transition:all .25s;
+}
+.wishlist-btn.active,.wishlist-btn:hover{background:var(--gold);color:var(--black);}
+.pc-body{padding:18px;}
+.pc-code{font-size:10.5px;color:var(--emerald-light);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+.pc-title{font-family:'Playfair Display',serif;font-size:17px;line-height:1.3;margin-bottom:8px;font-weight:700;color:var(--ivory);}
+.pc-desc{font-size:12px;color:var(--ivory-dim);line-height:1.65;margin:0 0 14px;padding-top:8px;border-top:1px solid var(--line);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.pc-price{display:flex;align-items:baseline;gap:10px;margin-bottom:16px;}
+.pc-price .old{text-decoration:line-through;color:#6b675e;font-size:13px;}
+.pc-price .new{color:var(--gold-light);font-size:19px;font-weight:700;font-family:'Playfair Display',serif;}
+.order-btn{
+  width:100%;padding:13px;border-radius:30px;background:linear-gradient(135deg,var(--emerald),var(--emerald-light));
+  color:#fff;font-size:12.5px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 8px 20px rgba(15,107,76,0.3);
+}
+.order-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(15,107,76,0.45);}
+
+/* edit affordances */
+.editable-hit{outline:1px dashed transparent;cursor:default;transition:outline .2s;}
+body.edit-on .editable-hit{outline:1px dashed rgba(201,162,74,0.5);cursor:text;border-radius:4px;}
+body.edit-on .editable-hit:hover{outline:1px dashed var(--gold-light);background:rgba(201,162,74,0.08);}
+.img-edit-btn{
+  position:absolute;bottom:10px;right:10px;background:var(--gold);color:var(--black);
+  font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;display:none;z-index:5;
+}
+body.edit-on .img-edit-btn{display:block;}
+
+.banner-edit-panel{
+  display:none;position:absolute;bottom:-64px;left:50%;transform:translateX(-50%);
+  background:var(--charcoal-2);border:1px solid var(--gold);border-radius:14px;
+  padding:12px 16px;text-align:center;box-shadow:0 15px 35px rgba(0,0,0,0.5);z-index:20;white-space:nowrap;
+}
+body.edit-on .banner-edit-panel{display:block;}
+.banner-edit-label{font-size:11px;color:var(--gold-light);letter-spacing:0.5px;display:block;margin-bottom:8px;font-weight:600;}
+.banner-edit-slots{display:flex;gap:6px;justify-content:center;}
+.banner-edit-slot{
+  width:26px;height:26px;border-radius:6px;background:var(--gold);color:var(--black);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+  transition:transform .2s;
+}
+.banner-edit-slot:hover{transform:scale(1.12);}
+
+/* ===== ABOUT ===== */
+.about-copy-centered{text-align:center;max-width:700px;margin:0 auto;}
+.about-lead{color:var(--ivory-dim);font-size:14.5px;line-height:1.85;margin:0 auto 18px;max-width:620px;}
+.about-badge{
+  display:inline-flex;align-items:center;gap:10px;margin-top:32px;
+  background:var(--charcoal-2);border:1px solid rgba(201,162,74,0.4);border-radius:30px;
+  padding:12px 26px;font-size:13px;font-weight:600;letter-spacing:0.3px;color:var(--gold-light);
+}
+.about-badge-icon{font-size:16px;}
+
+/* ===== RETURN POLICY ===== */
+.return-policy-card{
+  max-width:720px;margin:44px auto 0;background:var(--charcoal-2);border:1px solid var(--line);
+  border-radius:20px;padding:40px;display:flex;gap:36px;align-items:flex-start;
+}
+.return-policy-highlight{
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(201,162,74,0.14),rgba(15,107,76,0.14));
+  border:1px solid rgba(201,162,74,0.35);border-radius:16px;padding:22px 20px;min-width:110px;
+}
+.return-policy-days{font-family:'Playfair Display',serif;font-size:46px;font-weight:800;color:var(--gold-light);line-height:1;}
+.return-policy-days-label{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--ivory-dim);margin-top:6px;text-align:center;}
+.return-policy-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.return-policy-list li{font-size:13.5px;color:var(--ivory-dim);line-height:1.7;display:flex;gap:10px;}
+.rp-icon{color:var(--emerald-light);font-weight:700;flex-shrink:0;}
+.about-copy-centered h2{font-size:clamp(28px,3.5vw,40px);}
+.about-copy p{color:var(--ivory-dim);line-height:1.8;font-size:14.5px;margin:20px 0 26px;}
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.about-point{display:flex;gap:12px;align-items:flex-start;}
+.about-point .num{
+  font-family:'Playfair Display',serif;color:var(--gold-light);font-size:20px;font-weight:700;
+  border:1px solid var(--line);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.about-point p{margin:0;font-size:13px;color:var(--ivory-dim);}
+
+/* ===== TESTIMONIALS ===== */
+.testi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.testi-card{background:var(--charcoal-2);border:1px solid var(--line);border-radius:12px;padding:18px 16px;position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease;}
+.testi-card:hover{transform:translateY(-3px);border-color:rgba(201,162,74,0.4);}
+.testi-card::before{content:"“";position:absolute;top:-10px;right:10px;font-family:'Playfair Display',serif;font-size:52px;color:rgba(201,162,74,0.1);line-height:1;pointer-events:none;}
+.testi-stars{color:var(--gold-light);font-size:11px;margin-bottom:8px;letter-spacing:1.5px;}
+.testi-card p{font-size:11.5px;color:var(--ivory-dim);line-height:1.55;margin-bottom:12px;}
+.testi-user{display:flex;align-items:center;gap:8px;}
+.testi-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--emerald-light));display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:var(--black);flex-shrink:0;}
+.testi-user b{font-size:11.5px;display:block;}
+.testi-user span{font-size:9.5px;color:var(--ivory-dim);}
+
+/* ===== CTA BAND ===== */
+.cta-band{
+  background:linear-gradient(135deg,rgba(15,107,76,0.18),rgba(201,162,74,0.14));
+  border:1px solid rgba(201,162,74,0.4);border-radius:24px;padding:64px 40px;text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(0,0,0,0.2),0 30px 60px rgba(0,0,0,0.35);
+}
+.cta-band::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-light),transparent);}
+.cta-band h2{font-size:clamp(24px,3vw,34px);margin-bottom:14px;}
+.cta-band p{color:var(--ivory-dim);margin-bottom:30px;font-size:14.5px;}
+
+/* ===== FOOTER ===== */
+footer{background:var(--charcoal);border-top:1px solid var(--line);padding:76px 0 0;position:relative;}
+footer::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.footer-grid{display:grid;grid-template-columns:1.7fr 1fr 1.2fr;gap:44px;padding-bottom:56px;}
+.footer-brand p{color:var(--ivory-dim);font-size:13.5px;line-height:1.8;margin:18px 0 22px;max-width:280px;}
+.footer-social{display:flex;gap:10px;margin-top:20px;}
+.footer-social a{width:36px;height:36px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .25s;}
+.footer-social a:hover{transform:translateY(-3px);}
+footer h4{font-size:14px;margin-bottom:20px;letter-spacing:0.5px;color:var(--gold-light);font-family:'Poppins',sans-serif;font-weight:600;}
+footer ul li{margin-bottom:12px;}
+footer ul li a{font-size:13px;color:var(--ivory-dim);transition:color .2s;}
+footer ul li a:hover{color:var(--gold-light);}
+.footer-qr{background:var(--charcoal-2);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;gap:14px;align-items:center;}
+.footer-qr img{width:80px;height:80px;border-radius:8px;background:#fff;padding:5px;}
+.footer-qr .qr-info{font-size:12px;color:var(--ivory-dim);line-height:1.6;}
+.footer-qr .qr-info b{color:var(--gold-light);display:block;margin-bottom:3px;}
+.newsletter{display:flex;margin-top:16px;border:1px solid var(--line);border-radius:30px;overflow:hidden;}
+.newsletter input{flex:1;background:transparent;border:none;padding:12px 18px;color:var(--ivory);font-size:13px;outline:none;}
+.newsletter button{background:var(--gold);color:var(--black);padding:12px 20px;font-weight:600;font-size:13px;}
+.footer-bottom{
+  border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--ivory-dim);flex-wrap:wrap;gap:10px;
+}
+.footer-bottom a{color:var(--ivory-dim);}
+.footer-bottom a:hover{color:var(--gold-light);}
+
+/* ===== EDIT MODE TOGGLE ===== */
+.edit-toggle{
+  position:fixed;bottom:26px;right:26px;z-index:1200;
+  background:var(--gold);color:var(--black);width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  box-shadow:0 10px 30px rgba(201,162,74,0.4);transition:transform .25s;
+}
+.edit-toggle:hover{transform:scale(1.08) rotate(15deg);}
+.edit-toast{
+  position:fixed;bottom:96px;right:26px;z-index:1200;background:var(--charcoal-2);border:1px solid var(--gold);
+  padding:12px 18px;border-radius:10px;font-size:12.5px;color:var(--gold-light);max-width:220px;
+  display:none;box-shadow:0 15px 30px rgba(0,0,0,0.5);
+}
+body.edit-on .edit-toast{display:block;}
+body.edit-on .edit-toggle{background:var(--emerald-light);color:#fff;}
+
+/* mobile responsive */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;}
+  .ring-stage{height:380px;margin-top:20px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .testi-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  nav.main-nav{gap:22px;justify-content:flex-start;}
+  nav.main-nav>ul{flex-wrap:nowrap;justify-content:flex-start;gap:22px;}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero{padding-top:150px;}
+  .page-view.active{padding-top:150px;}
+  .return-policy-card{flex-direction:column;align-items:center;text-align:center;padding:30px;}
+  .return-policy-list{text-align:left;}
+  .section{padding:70px 0;}
+  .hero-stats{gap:24px;flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="nav-wrap logo-row">
+    <a href="javascript:void(0)" class="logo" data-scroll="home">
+      <div class="logo-mark"></div>
+      <div class="logo-text">HKN <span>Libas</span> PK<small>Luxury Pakistani Fashion</small></div>
+    </a>
+  </div>
+  <nav class="main-nav" id="mainNav">
+    <ul>
+      <li><a href="javascript:void(0)" data-scroll="home">Home</a></li>
+      <li class="has-dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-collection="ladies">Ladies Collection</a></li>
+      <li class="has-dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-collection="men">Men's Collection</a></li>
+      <li><a href="javascript:void(0)" class="bedsheets-nav-link">Bedsheets</a></li>
+      <li><a href="javascript:void(0)" data-scroll="about">About Us</a></li>
+      <li><a href="javascript:void(0)" data-scroll="contact">Contact Us</a></li>
+      <li><a href="javascript:void(0)" data-scroll="privacy">Privacy Policy</a></li>
+    </ul>
+  </nav>
+  <div class="mega-dropdown" id="megaDropdown">
+    <a href="javascript:void(0)" data-filter="" id="mdSummer">Summer Collection</a>
+    <a href="javascript:void(0)" data-filter="" id="mdWinter">Winter Collection</a>
+  </div>
+</header>
+
+<div id="view-home">
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">HKN Libas PK — Est. Pakistan</div>
+      <h1>Timeless Pakistani <br><em>Elegance</em>, Delivered <br>to Your Door</h1>
+      <p>Discover handpicked Ladies &amp; Men's fashion — luxury fabrics, festive stitching and everyday wear, ordered directly on WhatsApp.</p>
+      <div class="hero-stats">
+        <div><strong>500+</strong><span>Happy Customers</span></div>
+        <div><strong>120+</strong><span>Design Styles</span></div>
+        <div><strong>4.9★</strong><span>Customer Rating</span></div>
+      </div>
+    </div>
+
+    <div class="ring-stage">
+      <div class="orbit-label"><span class="dot"></span>New Arrivals</div>
+      <div class="ring-center"></div>
+      <div class="ring-base"></div>
+      <div class="ring" id="heroRing">
+        <!-- ring cards injected by JS -->
+      </div>
+      <div class="banner-edit-panel" id="bannerEditPanel">
+        <span class="banner-edit-label">✎ Change Banner Photos</span>
+        <div class="banner-edit-slots" id="bannerEditSlots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== PRODUCTS ===== -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ladies-summer">Ladies Summer</button>
+      <button class="filter-btn" data-filter="ladies-winter">Ladies Winter</button>
+      <button class="filter-btn" data-filter="men-summer">Men Summer</button>
+      <button class="filter-btn" data-filter="men-winter">Men Winter</button>
+      <button class="filter-btn" data-filter="bedsheets">Bedsheets</button>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Customer Love</div>
+      <h2>What Our Customers Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t1">"Ordering was so easy over WhatsApp — fabric quality is genuinely premium."</p><div class="testi-user"><div class="testi-avatar">A</div><div><b>Ayesha K.</b><span>Lahore</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t2">"Fast delivery and the winter collection is beautiful. Ordering again."</p><div class="testi-user"><div class="testi-avatar">B</div><div><b>Bilal R.</b><span>Karachi</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t3">"One tap and I was chatting with them on WhatsApp in seconds."</p><div class="testi-user"><div class="testi-avatar">S</div><div><b>Sara M.</b><span>Verified Buyer</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t4">"The 3D bedsheet design looks even better in person. Loved it!"</p><div class="testi-user"><div class="testi-avatar">F</div><div><b>Faisal N.</b><span>Islamabad</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t5">"Stitching quality is excellent, exactly like the photos showed."</p><div class="testi-user"><div class="testi-avatar">M</div><div><b>Mahnoor A.</b><span>Faisalabad</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t6">"Cash on delivery made it so easy to trust and buy confidently."</p><div class="testi-user"><div class="testi-avatar">U</div><div><b>Usman T.</b><span>Multan</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t7">"Replied quickly on WhatsApp and answered all my questions kindly."</p><div class="testi-user"><div class="testi-avatar">Z</div><div><b>Zainab H.</b><span>Rawalpindi</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t8">"Bought the velvet suit for a wedding — got so many compliments."</p><div class="testi-user"><div class="testi-avatar">H</div><div><b>Hina S.</b><span>Peshawar</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t9">"Great packaging and the bedsheet colors are vivid and rich."</p><div class="testi-user"><div class="testi-avatar">K</div><div><b>Kamran I.</b><span>Sialkot</span></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="editable-hit" data-edit-key="t10">"My go-to for kurtas now — comfortable and true to size."</p><div class="testi-user"><div class="testi-avatar">R</div><div><b>Rabia F.</b><span>Verified Buyer</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="cta-band">
+      <div class="eyebrow" style="justify-content:center;">Found Something You Love?</div>
+      <h2>Click "Order Now" on Any Dress to Book It</h2>
+      <p style="margin-bottom:0;">Choose your favorite piece above and tap the Order Now button to reserve it instantly.</p>
+    </div>
+  </div>
+</section>
+</div><!-- /view-home -->
+
+<!-- ===== ABOUT (opens only when clicked) ===== -->
+<section class="section page-view" id="about">
+  <div class="container">
+    <a href="javascript:void(0)" class="back-home-link" onclick="showView('home')">← Back to Home</a>
+    <div class="about-copy-centered">
+      <div class="eyebrow" style="justify-content:center;">Our Story</div>
+      <h2>Crafted for Comfort, <br>Chosen for Style</h2>
+      <p class="about-lead">HKN Libas PK was born from a simple belief — that premium Pakistani fashion shouldn't be complicated to find or hard to trust. We handpick every piece for its fabric, stitching and finish, so Ladies and Men across Pakistan can shop confidently without stepping into a showroom.</p>
+      <p class="about-lead">From breezy lawn suits for summer to rich khaddar and velvet for winter, every design in our collection is chosen to feel as good as it looks. No middlemen, no guesswork — just a quick WhatsApp message and your favorite outfit is on its way to your door.</p>
+      <p class="about-lead">We've also brought our love for design into the bedroom — our vivid <strong style="color:var(--gold-light);font-weight:600;">3D design bedsheets</strong> feature lifelike, richly detailed patterns on soft, fade-resistant fabric, giving your home the same premium touch as your wardrobe.</p>
+      <div class="about-badge">
+        <span class="about-badge-icon">🌍</span> Worldwide Delivery Services Available
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RETURN POLICY ===== -->
+<section class="section page-view" id="return-policy">
+  <div class="container">
+    <a href="javascript:void(0)" class="back-home-link" onclick="showView('home')">← Back to Home</a>
+    <div class="about-copy-centered">
+      <div class="eyebrow" style="justify-content:center;">Our Promise</div>
+      <h2>Return Policy</h2>
+      <p class="about-lead">Your satisfaction matters to us. While we carefully check every piece before it's shipped, we understand that occasional design or quality issues can happen — and we've got you covered.</p>
+    </div>
+    <div class="return-policy-card">
+      <div class="return-policy-highlight">
+        <span class="return-policy-days">3</span>
+        <span class="return-policy-days-label">Day Return Window</span>
+      </div>
+      <ul class="return-policy-list">
+        <li><span class="rp-icon">✓</span> Returns accepted within <strong>3 days</strong> of delivery if there's a design, stitching or fabric defect.</li>
+        <li><span class="rp-icon">✓</span> Simply message us on WhatsApp with your order details and a photo of the issue — we'll sort it out quickly.</li>
+        <li><span class="rp-icon">✓</span> The item must be unused, unwashed, and in its original condition with tags intact.</li>
+        <li><span class="rp-icon">✓</span> Once approved, we'll happily arrange a free exchange for the correct item.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRIVACY POLICY ===== -->
+<section class="section page-view" id="privacy">
+  <div class="container">
+    <a href="javascript:void(0)" class="back-home-link" onclick="showView('home')">← Back to Home</a>
+    <div class="about-copy-centered">
+      <div class="eyebrow" style="justify-content:center;">Your Trust Matters</div>
+      <h2>Privacy Policy</h2>
+      <p class="about-lead">We respect your privacy and keep things simple. Here's exactly what we collect, how we use it, and how we protect it — no fine print, no surprises.</p>
+    </div>
+    <div class="return-policy-card" style="max-width:760px;display:block;">
+      <ul class="return-policy-list">
+        <li><span class="rp-icon">✓</span> <strong>What we collect:</strong> Your name, phone number and delivery address — shared by you when placing an order on WhatsApp.</li>
+        <li><span class="rp-icon">✓</span> <strong>How we use it:</strong> Solely to confirm your order, arrange delivery, and keep you updated on your parcel.</li>
+        <li><span class="rp-icon">✓</span> <strong>We never sell your data:</strong> Your information is never sold, rented or shared with third parties for marketing.</li>
+        <li><span class="rp-icon">✓</span> <strong>WhatsApp communication:</strong> All order chats happen directly on WhatsApp, subject to WhatsApp's own privacy policy.</li>
+        <li><span class="rp-icon">✓</span> <strong>Your control:</strong> You can ask us to delete your order information at any time by messaging us on WhatsApp.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TERMS & CONDITIONS ===== -->
+<section class="section page-view" id="terms">
+  <div class="container">
+    <a href="javascript:void(0)" class="back-home-link" onclick="showView('home')">← Back to Home</a>
+    <div class="about-copy-centered">
+      <div class="eyebrow" style="justify-content:center;">Good to Know</div>
+      <h2>Terms &amp; Conditions</h2>
+      <p class="about-lead">A few simple ground rules so shopping with us stays smooth and fair for everyone.</p>
+    </div>
+    <div class="return-policy-card" style="max-width:760px;display:block;">
+      <ul class="return-policy-list">
+        <li><span class="rp-icon">✓</span> An order is confirmed once you receive confirmation from us on WhatsApp.</li>
+        <li><span class="rp-icon">✓</span> Prices and availability may change without prior notice.</li>
+        <li><span class="rp-icon">✓</span> Actual fabric colors may vary slightly from photos due to lighting and screen settings.</li>
+        <li><span class="rp-icon">✓</span> Payment is Cash on Delivery within Pakistan. For international orders, advance payment via bank transfer is required before dispatch.</li>
+        <li><span class="rp-icon">✓</span> We reserve the right to decline or cancel any order at our discretion.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <div class="logo-text">HKN <span>Libas</span> PK</div>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/hknlibaspk" target="_blank" rel="noopener" aria-label="Facebook" class="social-fb"><svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path fill="#fff" d="M13.5 21v-7.2h2.4l.36-2.8h-2.76V9.2c0-.81.22-1.36 1.39-1.36h1.48V5.34C15.9 5.24 15.02 5.16 14 5.16c-2.12 0-3.57 1.29-3.57 3.66v2.18H8v2.8h2.43V21h3.07z"/></svg></a>
+          <a href="https://www.instagram.com/hknlibaspk?igsh=MXVwdGoyanZhcHp4dQ==&amp;utm_source=ig_contact_invite" target="_blank" rel="noopener" aria-label="Instagram" class="social-ig"><svg viewBox="0 0 24 24" width="18" height="18"><defs><linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#FED576"/><stop offset="30%" stop-color="#F47133"/><stop offset="60%" stop-color="#BC3081"/><stop offset="100%" stop-color="#4C63D2"/></linearGradient></defs><rect width="24" height="24" rx="7" fill="url(#igGrad)"/><rect x="6" y="6" width="12" height="12" rx="4" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="3" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="17" cy="7" r="1.1" fill="#fff"/></svg></a>
+          <a href="https://www.tiktok.com/@hknlibaspk" target="_blank" rel="noopener" aria-label="TikTok" class="social-tt"><svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="12" fill="#010101"/><path fill="#25F4EE" d="M14.8 6.2c.5.9 1.3 1.6 2.4 1.9v2.1c-1-.03-1.9-.34-2.7-.85v4.6c0 2.4-1.9 4.35-4.3 4.35S5.9 16.35 5.9 13.95c0-2.3 1.75-4.2 4-4.34v2.2c-1.05.13-1.85 1.02-1.85 2.09 0 1.16.95 2.1 2.12 2.1s2.12-.94 2.12-2.1V4.5h2.1c.02.6.12 1.17.31 1.7z"/><path fill="#FE2C55" d="M15.3 5.7c.5.9 1.3 1.6 2.4 1.9v2.1c-1-.03-1.9-.34-2.7-.85v4.6c0 2.4-1.9 4.35-4.3 4.35S6.4 15.85 6.4 13.45c0-2.3 1.75-4.2 4-4.34v2.2c-1.05.13-1.85 1.02-1.85 2.09 0 1.16.95 2.1 2.12 2.1s2.12-.94 2.12-2.1V4h2.1c.02.6.12 1.17.31 1.7z"/></svg></a>
+          <a href="https://www.youtube.com/@HKNLIBASPK" target="_blank" rel="noopener" aria-label="YouTube" class="social-yt"><svg viewBox="0 0 24 24" width="18" height="18"><rect width="24" height="24" rx="7" fill="#FF0000"/><path fill="#fff" d="M10 8.5l6 3.5-6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="javascript:void(0)" data-scroll="home">Home</a></li>
+          <li><a href="javascript:void(0)" data-scroll="products">Collections</a></li>
+          <li><a href="javascript:void(0)" data-scroll="about">About Us</a></li>
+          <li><a href="javascript:void(0)" data-scroll="privacy">Privacy Policy</a></li>
+          <li><a href="javascript:void(0)" data-scroll="return-policy">Return Policy</a></li>
+          <li><a href="javascript:void(0)" data-scroll="terms">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul>
+          <li><a id="footerPhoneWa" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;"><svg viewBox="0 0 32 32" width="18" height="18"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M16 8a8 8 0 00-6.93 12.02L8 24l4.1-1.07A8 8 0 1016 8zm0 14.4a6.37 6.37 0 01-3.25-.89l-.23-.14-2.42.63.65-2.36-.15-.24A6.4 6.4 0 1122.4 16 6.4 6.4 0 0116 22.4zm3.5-4.79c-.19-.1-1.13-.56-1.31-.62-.18-.07-.3-.1-.43.1-.13.19-.5.62-.61.75-.11.13-.22.14-.41.05-.19-.1-.8-.29-1.52-.94-.56-.5-.94-1.11-1.05-1.3-.11-.19-.01-.29.08-.39.09-.09.19-.22.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.43-1.04-.59-1.42-.16-.38-.32-.33-.43-.33h-.37c-.13 0-.34.05-.52.24-.18.19-.68.66-.68 1.61s.7 1.87.8 2c.1.13 1.37 2.09 3.32 2.93.46.2.83.32 1.11.41.47.15.9.13 1.24.08.38-.06 1.13-.46 1.29-.9.16-.44.16-.82.11-.9-.05-.08-.18-.13-.37-.23z" fill="#fff"/></svg> <span class="editable-hit" data-edit-key="phoneDisplay">+92 322 6789775</span></a></li>
+          <li>✉️ <a href="mailto:hknlibaspk@gmail.com">hknlibaspk@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> HKN Libas PK. All rights reserved.</div>
+      <div><a href="javascript:void(0)" data-scroll="privacy">Privacy</a> · <a href="javascript:void(0)" data-scroll="return-policy">Returns</a> · <a href="javascript:void(0)" data-scroll="terms">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== EDIT MODE ===== -->
+<button class="edit-toggle" id="editToggle" title="Toggle Edit Mode">✎</button>
+<div class="edit-toast">Edit mode ON — click any text, price or image to change it. Changes save automatically in this browser.</div>
+
+<script>
+/* ================= CONFIG ================= */
+const WA_NUMBER = "923226789775"; // +92 322 6789775, no + or spaces
+const DEFAULT_PRODUCTS = [
+  {id:"p1",code:"HKN-101",name:"Emerald Lawn Suit",title:"Emerald Green Embroidered Lawn Suit for Women",desc:"A premium 3-piece lawn suit in rich emerald green, finished with delicate thread embroidery on the neckline and hem. Lightweight and breathable fabric, perfect for everyday summer wear or casual get-togethers.",cat:"ladies-summer",old:4500,price:3200,img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=500&auto=format&fit=crop"},
+  {id:"p2",code:"HKN-102",name:"Ivory Chiffon Set",title:"Ivory Chiffon 3-Piece Suit with Dupatta",desc:"An elegant ivory chiffon ensemble featuring soft flowing fabric and a matching dupatta. Designed for festive occasions and evening wear, offering a graceful silhouette with subtle sheen.",cat:"ladies-summer",old:5200,price:3900,img:"https://images.unsplash.com/photo-1583391733956-6c78276477e2?q=80&w=500&auto=format&fit=crop"},
+  {id:"p3",code:"HKN-103",name:"Gold Embroidered Shawl Set",title:"Gold Embroidered Winter Shawl Suit for Women",desc:"A luxurious winter suit paired with a gold-embroidered shawl, crafted from warm khaddar fabric. Ideal for weddings and winter functions, combining traditional craftsmanship with modern tailoring.",cat:"ladies-winter",old:6800,price:4999,img:"https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?q=80&w=500&auto=format&fit=crop"},
+  {id:"p4",code:"HKN-104",name:"Velvet Winter Suit",title:"Deep Purple Velvet Winter Suit for Women",desc:"A rich velvet suit in deep purple, tailored for cold-weather comfort without compromising on style. Features intricate detailing along the collar and cuffs, great for winter formal events.",cat:"ladies-winter",old:7200,price:5400,img:"https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=500&auto=format&fit=crop"},
+  {id:"p5",code:"HKN-201",name:"Classic Cotton Kurta",title:"Classic White Cotton Kurta for Men",desc:"A timeless white cotton kurta made from soft, breathable fabric suited for Pakistan's summer heat. Simple, versatile, and perfect for daily wear or casual outings.",cat:"men-summer",old:3200,price:2400,img:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=500&auto=format&fit=crop"},
+  {id:"p6",code:"HKN-202",name:"Light Cotton Shalwar Kameez",title:"Light Cotton Shalwar Kameez for Men - Summer Fit",desc:"A relaxed-fit shalwar kameez in lightweight cotton, designed to keep you cool through hot summer days. Clean stitching and a classic cut make it suitable for both work and casual settings.",cat:"men-summer",old:3600,price:2700,img:"https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?q=80&w=500&auto=format&fit=crop"},
+  {id:"p7",code:"HKN-301",name:"Charcoal Waistcoat Set",title:"Charcoal Grey Waistcoat Set for Men - Winter Formal",desc:"A sharp charcoal grey waistcoat set built for winter formal occasions. Tailored fit with a structured waistcoat layered over a matching kurta, ideal for weddings and events.",cat:"men-winter",old:5800,price:4300,img:"https://images.unsplash.com/photo-1608234807905-4466023792f5?q=80&w=500&auto=format&fit=crop"},
+  {id:"p8",code:"HKN-302",name:"Wool Blend Winter Coat",title:"Wool Blend Long Winter Coat for Men",desc:"A heavyweight wool-blend coat designed for maximum warmth during Pakistan's coldest months. Long-line cut with a tailored fit, pairs well with both traditional and western outfits.",cat:"men-winter",old:8200,price:6100,img:"https://images.unsplash.com/photo-1544923246-77307dd654cb?q=80&w=500&auto=format&fit=crop"},
+  {id:"p9",code:"HKN-BED-01",name:"Floral 3D Bedsheet Set",title:"3D Floral Design Double Bedsheet Set",desc:"A vivid 3D-printed bedsheet set featuring a lifelike floral design with a soft, glossy finish. Includes 1 bedsheet and 2 pillow covers, made from high-quality fine cotton for a cool, comfortable feel.",cat:"bedsheets",old:4200,price:2999,img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=500&auto=format&fit=crop"},
+  {id:"p10",code:"HKN-BED-02",name:"Royal Damask 3D Bedsheet Set",title:"3D Royal Damask Design King Size Bedsheet Set",desc:"A luxurious king-size 3D bedsheet set with an elegant damask pattern that adds depth and richness to any bedroom. Soft-touch fabric, fade-resistant print, includes matching pillow covers.",cat:"bedsheets",old:5500,price:3999,img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=500&auto=format&fit=crop"},
+  {id:"p11",code:"HKN-BED-03",name:"Geometric 3D Bedsheet Set",title:"3D Geometric Pattern Bedsheet Set for Bedroom",desc:"A modern geometric 3D-printed bedsheet set that brings a bold, contemporary look to your bedroom. Wrinkle-resistant fabric with vivid, long-lasting colors — includes 1 bedsheet and 2 pillow covers.",cat:"bedsheets",old:4800,price:3499,img:"https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=500&auto=format&fit=crop"}
+];
+
+/* ================= STORAGE ================= */
+const store = {
+  get(key, fallback){
+    try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+    catch(e){ return fallback; }
+  },
+  set(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+};
+let products = store.get("hkn_products", DEFAULT_PRODUCTS);
+// Backfill any missing fields (e.g. title/desc) on products saved from an older version of this site
+products = products.map(p=>{
+  const def = DEFAULT_PRODUCTS.find(d=>d.id===p.id) || {};
+  return {...def, ...p, title: p.title || def.title || p.name, desc: p.desc || def.desc || ""};
+});
+store.set("hkn_products", products);
+let bannerImages = store.get("hkn_banner_images", DEFAULT_PRODUCTS.slice(0,6).map(p=>p.img));
+let wishlist = store.get("hkn_wishlist", []);
+let textEdits = store.get("hkn_text_edits", {});
+let currentFilter = "all";
+
+/* ================= WHATSAPP LINKS ================= */
+function waLink(text){
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+function generalWaLink(){
+  return waLink("Hello HKN Libas PK, I would like to know more about your collection. Please assist me.");
+}
+function productWaLink(p){
+  const msg = `Hello HKN Libas PK,\n\nI want to order this item.\n\nProduct Code: ${p.code}\nProduct Name: ${p.name}\nProduct Price: Rs. ${p.price}\n\nPlease assist me.`;
+  return waLink(msg);
+}
+function setWaButtons(){
+  document.querySelectorAll("#heroWaBtn,#ctaWaBtn,#footerWaBtn,#footerPhoneWa").forEach(el=>{
+    el.href = generalWaLink();
+  });
+}
+
+/* ================= RENDER: HERO RING ================= */
+function renderRing(){
+  const ring = document.getElementById("heroRing");
+  ring.innerHTML = "";
+  const items = bannerImages;
+  const angleStep = 360 / items.length;
+  const radius = 320;
+  items.forEach((img,i)=>{
+    const angle = i*angleStep;
+    const div = document.createElement("div");
+    div.className = "ring-card";
+    div.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+    div.innerHTML = `<img src="${img}" alt="Banner photo ${i+1}" onerror="this.style.display='none'">`;
+    ring.appendChild(div);
+  });
+  renderBannerEditSlots();
+}
+
+/* ================= BANNER IMAGE EDIT SLOTS ================= */
+function renderBannerEditSlots(){
+  const wrap = document.getElementById("bannerEditSlots");
+  if(!wrap) return;
+  wrap.innerHTML = "";
+  bannerImages.forEach((img,i)=>{
+    const slot = document.createElement("div");
+    slot.className = "banner-edit-slot";
+    slot.title = `Change banner photo ${i+1}`;
+    slot.textContent = i+1;
+    slot.onclick = ()=>{
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.onchange = (e)=>{
+        const file = e.target.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev)=>{
+          bannerImages[i] = ev.target.result;
+          store.set("hkn_banner_images", bannerImages);
+          renderRing();
+        };
+        reader.readAsDataURL(file);
+      };
+      input.click();
+    };
+    wrap.appendChild(slot);
+  });
+}
+
+/* ================= RENDER: PRODUCT GRID ================= */
+function renderProducts(){
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+  const list = currentFilter === "all" ? products : products.filter(p=>p.cat===currentFilter);
+  list.forEach(p=>{
+    const discount = Math.round(((p.old - p.price)/p.old)*100);
+    const isWished = wishlist.includes(p.id);
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.innerHTML = `
+      <div class="pc-img-wrap">
+        <img src="${p.img}" alt="${p.title || p.name}" data-id="${p.id}" class="pc-img" onerror="this.style.display='none'">
+        <span class="badge-discount">-${discount}%</span>
+        <button class="wishlist-btn ${isWished?'active':''}" data-id="${p.id}">${isWished?'♥':'♡'}</button>
+        <button class="img-edit-btn" data-id="${p.id}">Change Image</button>
+        <input type="file" accept="image/*" class="img-file-input" data-id="${p.id}" style="display:none;">
+      </div>
+      <div class="pc-body">
+        <div class="pc-code editable-hit" data-id="${p.id}" data-field="code">${p.code}</div>
+        <div class="pc-title editable-hit" data-id="${p.id}" data-field="title">${p.title || p.name}</div>
+        <p class="pc-desc editable-hit" data-id="${p.id}" data-field="desc">${p.desc || ""}</p>
+        <div class="pc-price">
+          <span class="old editable-hit" data-id="${p.id}" data-field="old">Rs. ${p.old}</span>
+          <span class="new editable-hit" data-id="${p.id}" data-field="price">Rs. ${p.price}</span>
+        </div>
+        <a class="order-btn" href="${productWaLink(p)}" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" width="16" height="16"><circle cx="16" cy="16" r="16" fill="#fff"/><path d="M16 8a8 8 0 00-6.93 12.02L8 24l4.1-1.07A8 8 0 1016 8zm0 14.4a6.37 6.37 0 01-3.25-.89l-.23-.14-2.42.63.65-2.36-.15-.24A6.4 6.4 0 1122.4 16 6.4 6.4 0 0116 22.4zm3.5-4.79c-.19-.1-1.13-.56-1.31-.62-.18-.07-.3-.1-.43.1-.13.19-.5.62-.61.75-.11.13-.22.14-.41.05-.19-.1-.8-.29-1.52-.94-.56-.5-.94-1.11-1.05-1.3-.11-.19-.01-.29.08-.39.09-.09.19-.22.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.43-1.04-.59-1.42-.16-.38-.32-.33-.43-.33h-.37c-.13 0-.34.05-.52.24-.18.19-.68.66-.68 1.61s.7 1.87.8 2c.1.13 1.37 2.09 3.32 2.93.46.2.83.32 1.11.41.47.15.9.13 1.24.08.38-.06 1.13-.46 1.29-.9.16-.44.16-.82.11-.9-.05-.08-.18-.13-.37-.23z" fill="#25D366"/></svg> Order Now</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  attachProductEvents();
+}
+
+/* ================= EVENTS: PRODUCT CARD ================= */
+function attachProductEvents(){
+  // wishlist
+  document.querySelectorAll(".wishlist-btn").forEach(btn=>{
+    btn.onclick = (e)=>{
+      e.preventDefault();
+      const id = btn.dataset.id;
+      if(wishlist.includes(id)){ wishlist = wishlist.filter(x=>x!==id); }
+      else{ wishlist.push(id); }
+      store.set("hkn_wishlist", wishlist);
+      renderProducts();
+    };
+  });
+
+  // editable text fields (code/name/description/price/old)
+  document.querySelectorAll(".pc-code,.pc-title,.pc-desc,.old,.new").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      if(!document.body.classList.contains("edit-on")) return;
+      const id = el.dataset.id, field = el.dataset.field;
+      const prod = products.find(p=>p.id===id);
+      if(!prod) return;
+      const current = field==="old"||field==="price" ? prod[field] : prod[field];
+      const val = prompt(`Edit ${field}:`, current);
+      if(val===null || val.trim()==="") return;
+      if(field==="old" || field==="price"){
+        const num = parseFloat(val.replace(/[^\d.]/g,""));
+        if(!isNaN(num)) prod[field] = num;
+      } else {
+        prod[field] = val;
+      }
+      store.set("hkn_products", products);
+      renderProducts();
+      renderRing();
+    });
+  });
+
+  // image edit
+  document.querySelectorAll(".img-edit-btn").forEach(btn=>{
+    btn.onclick = ()=>{
+      const id = btn.dataset.id;
+      document.querySelector(`.img-file-input[data-id="${id}"]`).click();
+    };
+  });
+  document.querySelectorAll(".img-file-input").forEach(input=>{
+    input.onchange = (e)=>{
+      const id = input.dataset.id;
+      const file = e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev)=>{
+        const prod = products.find(p=>p.id===id);
+        if(prod){
+          prod.img = ev.target.result;
+          store.set("hkn_products", products);
+          renderProducts();
+          renderRing();
+        }
+      };
+      reader.readAsDataURL(file);
+    };
+  });
+}
+
+/* ================= EDITABLE PLAIN TEXT (testimonials, about) ================= */
+function applyTextEdits(){
+  document.querySelectorAll("[data-edit-key]").forEach(el=>{
+    const key = el.dataset.editKey;
+    if(textEdits[key]) el.innerHTML = textEdits[key];
+  });
+}
+function attachTextEditEvents(){
+  document.querySelectorAll("[data-edit-key]").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      if(!document.body.classList.contains("edit-on")) return;
+      const key = el.dataset.editKey;
+      const val = prompt("Edit text:", el.innerText);
+      if(val===null) return;
+      textEdits[key] = val;
+      store.set("hkn_text_edits", textEdits);
+      el.innerHTML = val;
+    });
+  });
+}
+
+/* ================= FILTER BAR ================= */
+document.getElementById("filterBar").addEventListener("click",(e)=>{
+  const btn = e.target.closest(".filter-btn");
+  if(!btn) return;
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  currentFilter = btn.dataset.filter;
+  renderProducts();
+});
+// category cards also filter (mega-dropdown links have their own dedicated handler)
+document.querySelectorAll("[data-filter]").forEach(el=>{
+  if(el.classList.contains("filter-btn") || el.id==="mdSummer" || el.id==="mdWinter") return;
+  el.addEventListener("click",(e)=>{
+    const f = el.dataset.filter;
+    if(!f) return;
+    e.preventDefault();
+    currentFilter = f;
+    document.querySelectorAll(".filter-btn").forEach(b=>{
+      b.classList.toggle("active", b.dataset.filter===f);
+    });
+    document.getElementById("products").scrollIntoView({behavior:"smooth"});
+    renderProducts();
+  });
+});
+
+/* ================= EDIT MODE TOGGLE ================= */
+document.getElementById("editToggle").addEventListener("click",()=>{
+  document.body.classList.toggle("edit-on");
+});
+
+/* ================= MOBILE NAV ================= */
+/* mobile burger removed - nav is now always visible in a single line */
+
+/* ================= PAGE VIEW SYSTEM (single-file "pages" that open on click) ================= */
+const PAGE_VIEWS = ["about","return-policy","privacy","terms"];
+function showView(name){
+  // hide the home content and all page-views first
+  document.getElementById("view-home").style.display = "none";
+  PAGE_VIEWS.forEach(v=>{
+    const el = document.getElementById(v);
+    if(el) el.classList.remove("active");
+  });
+  if(name === "home"){
+    document.getElementById("view-home").style.display = "";
+  } else {
+    const el = document.getElementById(name);
+    if(el) el.classList.add("active");
+  }
+  window.scrollTo({top:0, behavior:"instant"});
+}
+
+/* ================= NAV LINKS: open the right view or scroll within it ================= */
+document.querySelectorAll("[data-scroll]").forEach(link=>{
+  link.addEventListener("click",(e)=>{
+    e.preventDefault();
+    const target = link.dataset.scroll;
+    if(target === "contact"){
+      // footer is always visible outside every view, no need to switch views
+      document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+    } else if(target === "products"){
+      showView("home");
+      setTimeout(()=>{ document.getElementById("products").scrollIntoView({behavior:"smooth"}); }, 50);
+    } else if(target === "home"){
+      showView("home");
+    } else if(PAGE_VIEWS.includes(target)){
+      showView(target);
+    }
+  });
+});
+
+/* ================= DROPDOWN CLICK TOGGLE (Ladies/Men Collection) ================= */
+const megaDropdown = document.getElementById("megaDropdown");
+const mdSummer = document.getElementById("mdSummer");
+const mdWinter = document.getElementById("mdWinter");
+let activeToggle = null;
+
+function openMegaDropdown(toggle){
+  const collection = toggle.dataset.collection; // "ladies" or "men"
+  mdSummer.dataset.filter = `${collection}-summer`;
+  mdWinter.dataset.filter = `${collection}-winter`;
+  const rect = toggle.getBoundingClientRect();
+  const headerBottom = document.querySelector("header").getBoundingClientRect().bottom;
+  megaDropdown.style.top = headerBottom + 8 + "px";
+  megaDropdown.style.left = Math.min(Math.max(rect.left + rect.width/2, 110), window.innerWidth - 110) + "px";
+  megaDropdown.classList.add("show");
+  activeToggle = toggle;
+}
+function closeMegaDropdown(){
+  megaDropdown.classList.remove("show");
+  activeToggle = null;
+}
+
+document.querySelectorAll(".bedsheets-nav-link").forEach(link=>{
+  link.addEventListener("click",(e)=>{
+    e.preventDefault();
+    showView("home");
+    currentFilter = "bedsheets";
+    document.querySelectorAll(".filter-btn").forEach(b=>{
+      b.classList.toggle("active", b.dataset.filter==="bedsheets");
+    });
+    renderProducts();
+    setTimeout(()=>{ document.getElementById("products").scrollIntoView({behavior:"smooth"}); }, 50);
+  });
+});
+
+document.querySelectorAll(".dropdown-toggle").forEach(toggle=>{
+  toggle.addEventListener("click",(e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+    if(activeToggle === toggle){ closeMegaDropdown(); }
+    else{ openMegaDropdown(toggle); }
+  });
+});
+[mdSummer, mdWinter].forEach(link=>{
+  link.addEventListener("click",(e)=>{
+    e.preventDefault();
+    showView("home");
+    const f = link.dataset.filter;
+    currentFilter = f;
+    document.querySelectorAll(".filter-btn").forEach(b=>{
+      b.classList.toggle("active", b.dataset.filter===f);
+    });
+    renderProducts();
+    closeMegaDropdown();
+    setTimeout(()=>{ document.getElementById("products").scrollIntoView({behavior:"smooth"}); }, 50);
+  });
+});
+document.addEventListener("click",(e)=>{
+  if(!e.target.closest(".mega-dropdown") && !e.target.closest(".dropdown-toggle")){
+    closeMegaDropdown();
+  }
+});
+window.addEventListener("resize", closeMegaDropdown);
+window.addEventListener("scroll", closeMegaDropdown, {passive:true});
+
+/* ================= INIT ================= */
+document.getElementById("year").textContent = new Date().getFullYear();
+setWaButtons();
+renderRing();
+renderProducts();
+applyTextEdits();
+attachTextEditEvents();
+</script>
+</body>
+</html>
