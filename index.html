@@ -378,6 +378,15 @@ footer ul li a:hover{color:var(--gold-light);}
 body.edit-on .edit-toast{display:block;}
 body.edit-on .edit-toggle{background:var(--emerald-light);color:#fff;}
 
+.download-site-btn{
+  display:none;position:fixed;bottom:26px;right:96px;z-index:1200;
+  background:var(--gold);color:var(--black);padding:0 20px;height:56px;border-radius:30px;
+  font-size:13px;font-weight:700;letter-spacing:0.2px;
+  box-shadow:0 10px 30px rgba(201,162,74,0.4);transition:transform .25s;white-space:nowrap;
+}
+.download-site-btn:hover{transform:translateY(-2px);}
+body.edit-on .download-site-btn{display:block;}
+
 /* mobile responsive */
 @media(max-width:1024px){
   .hero-grid{grid-template-columns:1fr;}
@@ -391,6 +400,7 @@ body.edit-on .edit-toggle{background:var(--emerald-light);color:#fff;}
   .product-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
   .footer-grid{grid-template-columns:1fr;}
   .hero{padding-top:150px;}
+  .download-site-btn{right:26px;bottom:92px;height:44px;padding:0 16px;font-size:11.5px;}
   .page-view.active{padding-top:150px;}
   .return-policy-card{flex-direction:column;align-items:center;text-align:center;padding:30px;}
   .return-policy-list{text-align:left;}
@@ -633,7 +643,8 @@ body.edit-on .edit-toggle{background:var(--emerald-light);color:#fff;}
 
 <!-- ===== EDIT MODE ===== -->
 <button class="edit-toggle" id="editToggle" title="Toggle Edit Mode">✎</button>
-<div class="edit-toast">Edit mode ON — click any text, price or image to change it. Changes save automatically in this browser.</div>
+<button class="download-site-btn" id="downloadSiteBtn" title="Download Updated Website">⬇ Download Updated Website</button>
+<div class="edit-toast">Edit mode ON — click any text, price or image to change it, then tap "Download Updated Website" and upload that file to GitHub to make it live for everyone.</div>
 
 <script>
 /* ================= CONFIG ================= */
@@ -651,6 +662,8 @@ const DEFAULT_PRODUCTS = [
   {id:"p10",code:"HKN-BED-02",name:"Royal Damask 3D Bedsheet Set",title:"3D Royal Damask Design King Size Bedsheet Set",desc:"A luxurious king-size 3D bedsheet set with an elegant damask pattern that adds depth and richness to any bedroom. Soft-touch fabric, fade-resistant print, includes matching pillow covers.",cat:"bedsheets",old:5500,price:3999,img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=500&auto=format&fit=crop"},
   {id:"p11",code:"HKN-BED-03",name:"Geometric 3D Bedsheet Set",title:"3D Geometric Pattern Bedsheet Set for Bedroom",desc:"A modern geometric 3D-printed bedsheet set that brings a bold, contemporary look to your bedroom. Wrinkle-resistant fabric with vivid, long-lasting colors — includes 1 bedsheet and 2 pillow covers.",cat:"bedsheets",old:4800,price:3499,img:"https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=500&auto=format&fit=crop"}
 ];
+const DEFAULT_BANNER_IMAGES = DEFAULT_PRODUCTS.slice(0,6).map(p=>p.img);
+const DEFAULT_TEXT_EDITS = {};
 
 /* ================= STORAGE ================= */
 const store = {
@@ -667,9 +680,9 @@ products = products.map(p=>{
   return {...def, ...p, title: p.title || def.title || p.name, desc: p.desc || def.desc || ""};
 });
 store.set("hkn_products", products);
-let bannerImages = store.get("hkn_banner_images", DEFAULT_PRODUCTS.slice(0,6).map(p=>p.img));
+let bannerImages = store.get("hkn_banner_images", DEFAULT_BANNER_IMAGES);
 let wishlist = store.get("hkn_wishlist", []);
-let textEdits = store.get("hkn_text_edits", {});
+let textEdits = store.get("hkn_text_edits", DEFAULT_TEXT_EDITS);
 let currentFilter = "all";
 
 /* ================= WHATSAPP LINKS ================= */
@@ -884,6 +897,37 @@ document.querySelectorAll("[data-filter]").forEach(el=>{
 /* ================= EDIT MODE TOGGLE ================= */
 document.getElementById("editToggle").addEventListener("click",()=>{
   document.body.classList.toggle("edit-on");
+});
+
+/* ================= DOWNLOAD UPDATED WEBSITE (bakes all edits in permanently) ================= */
+document.getElementById("downloadSiteBtn").addEventListener("click", ()=>{
+  const htmlClone = document.documentElement.cloneNode(true);
+  htmlClone.querySelector("body").classList.remove("edit-on");
+  let htmlStr = "<!DOCTYPE html>\n" + htmlClone.outerHTML;
+
+  htmlStr = htmlStr.replace(
+    /const DEFAULT_PRODUCTS = \[[\s\S]*?\n\];/,
+    "const DEFAULT_PRODUCTS = " + JSON.stringify(products, null, 2) + ";"
+  );
+  htmlStr = htmlStr.replace(
+    /const DEFAULT_BANNER_IMAGES = DEFAULT_PRODUCTS\.slice\(0,6\)\.map\(p=>p\.img\);/,
+    "const DEFAULT_BANNER_IMAGES = " + JSON.stringify(bannerImages, null, 2) + ";"
+  );
+  htmlStr = htmlStr.replace(
+    /const DEFAULT_TEXT_EDITS = \{\};/,
+    "const DEFAULT_TEXT_EDITS = " + JSON.stringify(textEdits, null, 2) + ";"
+  );
+
+  const blob = new Blob([htmlStr], {type:"text/html"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "index.html";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  alert("Downloaded! Upload this file to GitHub as index.html — your changes will now be permanent for every customer.");
 });
 
 /* ================= MOBILE NAV ================= */
