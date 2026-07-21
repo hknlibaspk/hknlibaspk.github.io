@@ -649,7 +649,7 @@ body.edit-on .download-site-btn{display:block;}
 <script>
 /* ================= CONFIG ================= */
 const WA_NUMBER = "923226789775"; // +92 322 6789775, no + or spaces
-const DEFAULT_PRODUCTS = [
+/*DEFAULT_PRODUCTS_START*/const DEFAULT_PRODUCTS = [
   {id:"p1",code:"HKN-101",name:"Emerald Lawn Suit",title:"Emerald Green Embroidered Lawn Suit for Women",desc:"A premium 3-piece lawn suit in rich emerald green, finished with delicate thread embroidery on the neckline and hem. Lightweight and breathable fabric, perfect for everyday summer wear or casual get-togethers.",cat:"ladies-summer",old:4500,price:3200,img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=500&auto=format&fit=crop"},
   {id:"p2",code:"HKN-102",name:"Ivory Chiffon Set",title:"Ivory Chiffon 3-Piece Suit with Dupatta",desc:"An elegant ivory chiffon ensemble featuring soft flowing fabric and a matching dupatta. Designed for festive occasions and evening wear, offering a graceful silhouette with subtle sheen.",cat:"ladies-summer",old:5200,price:3900,img:"https://images.unsplash.com/photo-1583391733956-6c78276477e2?q=80&w=500&auto=format&fit=crop"},
   {id:"p3",code:"HKN-103",name:"Gold Embroidered Shawl Set",title:"Gold Embroidered Winter Shawl Suit for Women",desc:"A luxurious winter suit paired with a gold-embroidered shawl, crafted from warm khaddar fabric. Ideal for weddings and winter functions, combining traditional craftsmanship with modern tailoring.",cat:"ladies-winter",old:6800,price:4999,img:"https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?q=80&w=500&auto=format&fit=crop"},
@@ -662,8 +662,10 @@ const DEFAULT_PRODUCTS = [
   {id:"p10",code:"HKN-BED-02",name:"Royal Damask 3D Bedsheet Set",title:"3D Royal Damask Design King Size Bedsheet Set",desc:"A luxurious king-size 3D bedsheet set with an elegant damask pattern that adds depth and richness to any bedroom. Soft-touch fabric, fade-resistant print, includes matching pillow covers.",cat:"bedsheets",old:5500,price:3999,img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=500&auto=format&fit=crop"},
   {id:"p11",code:"HKN-BED-03",name:"Geometric 3D Bedsheet Set",title:"3D Geometric Pattern Bedsheet Set for Bedroom",desc:"A modern geometric 3D-printed bedsheet set that brings a bold, contemporary look to your bedroom. Wrinkle-resistant fabric with vivid, long-lasting colors — includes 1 bedsheet and 2 pillow covers.",cat:"bedsheets",old:4800,price:3499,img:"https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=500&auto=format&fit=crop"}
 ];
-const DEFAULT_BANNER_IMAGES = DEFAULT_PRODUCTS.slice(0,6).map(p=>p.img);
-const DEFAULT_TEXT_EDITS = {};
+/*DEFAULT_PRODUCTS_END*/
+/*BANNER_START*/const DEFAULT_BANNER_IMAGES = DEFAULT_PRODUCTS.slice(0,6).map(p=>p.img);/*BANNER_END*/
+/*TEXTEDITS_START*/const DEFAULT_TEXT_EDITS = {};/*TEXTEDITS_END*/
+/*VERSION_START*/const SITE_VERSION = "1";/*VERSION_END*/
 
 /* ================= STORAGE ================= */
 const store = {
@@ -676,6 +678,16 @@ const store = {
     catch(e){ return false; }
   }
 };
+
+// If this file was updated (new SITE_VERSION), wipe any old saved edits from this browser
+// so the new defaults baked into this file are what actually show up.
+if(store.get("hkn_site_version", null) !== SITE_VERSION){
+  localStorage.removeItem("hkn_products");
+  localStorage.removeItem("hkn_banner_images");
+  localStorage.removeItem("hkn_text_edits");
+  store.set("hkn_site_version", SITE_VERSION);
+}
+
 let products = store.get("hkn_products", DEFAULT_PRODUCTS);
 // Backfill any missing fields (e.g. title/desc) on products saved from an older version of this site
 products = products.map(p=>{
@@ -915,16 +927,20 @@ document.getElementById("downloadSiteBtn").addEventListener("click", ()=>{
   let htmlStr = "<!DOCTYPE html>\n" + htmlClone.outerHTML;
 
   htmlStr = htmlStr.replace(
-    /const DEFAULT_PRODUCTS = \[[\s\S]*?\n\];/,
-    "const DEFAULT_PRODUCTS = " + JSON.stringify(products, null, 2) + ";"
+    /\/\*DEFAULT_PRODUCTS_START\*\/const DEFAULT_PRODUCTS = \[[\s\S]*?\];\s*\/\*DEFAULT_PRODUCTS_END\*\//,
+    "/*DEFAULT_PRODUCTS_START*/const DEFAULT_PRODUCTS = " + JSON.stringify(products, null, 2) + ";\n/*DEFAULT_PRODUCTS_END*/"
   );
   htmlStr = htmlStr.replace(
-    /const DEFAULT_BANNER_IMAGES = DEFAULT_PRODUCTS\.slice\(0,6\)\.map\(p=>p\.img\);/,
-    "const DEFAULT_BANNER_IMAGES = " + JSON.stringify(bannerImages, null, 2) + ";"
+    /\/\*BANNER_START\*\/const DEFAULT_BANNER_IMAGES = [\s\S]*?;\/\*BANNER_END\*\//,
+    "/*BANNER_START*/const DEFAULT_BANNER_IMAGES = " + JSON.stringify(bannerImages, null, 2) + ";/*BANNER_END*/"
   );
   htmlStr = htmlStr.replace(
-    /const DEFAULT_TEXT_EDITS = \{\};/,
-    "const DEFAULT_TEXT_EDITS = " + JSON.stringify(textEdits, null, 2) + ";"
+    /\/\*TEXTEDITS_START\*\/const DEFAULT_TEXT_EDITS = [\s\S]*?;\/\*TEXTEDITS_END\*\//,
+    "/*TEXTEDITS_START*/const DEFAULT_TEXT_EDITS = " + JSON.stringify(textEdits, null, 2) + ";/*TEXTEDITS_END*/"
+  );
+  htmlStr = htmlStr.replace(
+    /\/\*VERSION_START\*\/const SITE_VERSION = "[^"]*";\/\*VERSION_END\*\//,
+    '/*VERSION_START*/const SITE_VERSION = "' + Date.now() + '";/*VERSION_END*/'
   );
 
   const blob = new Blob([htmlStr], {type:"text/html"});
