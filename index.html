@@ -671,7 +671,10 @@ const store = {
     try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
     catch(e){ return fallback; }
   },
-  set(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+  set(key, val){
+    try{ localStorage.setItem(key, JSON.stringify(val)); return true; }
+    catch(e){ return false; }
+  }
 };
 let products = store.get("hkn_products", DEFAULT_PRODUCTS);
 // Backfill any missing fields (e.g. title/desc) on products saved from an older version of this site
@@ -740,8 +743,11 @@ function renderBannerEditSlots(){
         const reader = new FileReader();
         reader.onload = (ev)=>{
           bannerImages[i] = ev.target.result;
-          store.set("hkn_banner_images", bannerImages);
+          const saved = store.set("hkn_banner_images", bannerImages);
           renderRing();
+          if(!saved){
+            alert("This photo is too large for this browser's storage to keep after a refresh. Don't refresh yet — click the gold \"⬇ Download Updated Website\" button right now to save this change permanently.");
+          }
         };
         reader.readAsDataURL(file);
       };
@@ -838,9 +844,12 @@ function attachProductEvents(){
         const prod = products.find(p=>p.id===id);
         if(prod){
           prod.img = ev.target.result;
-          store.set("hkn_products", products);
+          const saved = store.set("hkn_products", products);
           renderProducts();
           renderRing();
+          if(!saved){
+            alert("This photo is too large for this browser's storage to keep after a refresh. Don't refresh yet — click the gold \"⬇ Download Updated Website\" button right now to save this change permanently.");
+          }
         }
       };
       reader.readAsDataURL(file);
