@@ -57,8 +57,35 @@ header{
   transition:padding .3s ease;
 }
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 28px 0;max-width:1280px;margin:0 auto;}
-.nav-wrap.logo-row{justify-content:center;padding-bottom:14px;}
+.nav-wrap.logo-row{justify-content:center;padding-bottom:14px;position:relative;}
 .logo{display:flex;align-items:center;gap:12px;}
+.search-toggle-btn{
+  position:absolute;right:28px;top:50%;transform:translateY(-50%);
+  width:40px;height:40px;border-radius:50%;background:var(--charcoal-2);border:1px solid var(--line);
+  color:var(--ivory-dim);display:flex;align-items:center;justify-content:center;transition:all .25s;
+}
+.search-toggle-btn:hover,.search-toggle-btn.active{color:var(--gold-light);border-color:var(--gold);background:rgba(201,162,74,0.1);}
+.search-box{
+  max-height:0;overflow:hidden;transition:max-height .3s ease;border-bottom:0 solid var(--line);
+}
+.search-box.open{max-height:90px;border-bottom:1px solid var(--line);}
+.search-box-inner{
+  max-width:640px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;gap:12px;color:var(--ivory-dim);
+}
+.search-box-inner input{
+  flex:1;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--ivory);
+  font-size:16px;padding:8px 2px;outline:none;font-family:'Poppins',sans-serif;
+}
+.search-box-inner input:focus{border-bottom-color:var(--gold);}
+.search-box-inner input::placeholder{color:#6b675e;}
+.search-box-inner button{color:var(--ivory-dim);font-size:16px;transition:color .2s;}
+.search-box-inner button:hover{color:var(--gold-light);}
+.search-results-info{
+  text-align:center;font-size:13px;color:var(--ivory-dim);margin-bottom:30px;
+}
+.search-results-info button{color:var(--gold-light);text-decoration:underline;font-weight:600;margin-left:6px;}
+.no-results{text-align:center;padding:60px 20px;color:var(--ivory-dim);grid-column:1/-1;}
+.no-results h3{font-family:'Playfair Display',serif;color:var(--ivory);margin-bottom:10px;font-size:20px;}
 .logo-mark{
   width:44px;height:44px;border-radius:50%;
   background:conic-gradient(from 180deg,var(--gold),var(--emerald-light),var(--gold-light),var(--gold));
@@ -85,7 +112,7 @@ nav.main-nav>ul>li:hover>a::after{width:100%;}
 .mega-dropdown{
   position:fixed;top:0;left:50%;transform:translateX(-50%) translateY(-10px);
   background:var(--charcoal-2);border:1px solid var(--gold);border-radius:10px;
-  min-width:190px;padding:10px;opacity:0;visibility:hidden;transition:opacity .2s ease,transform .2s ease;
+  min-width:220px;padding:10px;opacity:0;visibility:hidden;transition:opacity .2s ease,transform .2s ease;
   box-shadow:0 20px 45px rgba(0,0,0,0.6);z-index:2000;
 }
 .mega-dropdown.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
@@ -212,6 +239,20 @@ nav.main-nav>ul>li:hover>a::after{width:100%;}
 
 /* ===== FILTER TABS ===== */
 .filter-bar{display:flex;justify-content:center;gap:12px;margin-bottom:46px;flex-wrap:wrap;}
+.add-product-btn{
+  display:none;margin:0 auto 32px;padding:12px 26px;border-radius:30px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);
+  font-weight:700;font-size:13px;box-shadow:0 8px 20px rgba(201,162,74,0.35);
+}
+body.edit-on .add-product-btn{display:block;}
+.pc-delete-btn{
+  position:absolute;top:12px;right:52px;width:34px;height:34px;border-radius:50%;
+  background:rgba(200,40,40,0.85);color:#fff;font-size:15px;display:none;align-items:center;justify-content:center;
+  z-index:6;
+}
+body.edit-on .pc-delete-btn{display:flex;}
+.pc-cat-edit{display:none;font-size:10px;color:var(--emerald-light);border:1px dashed var(--emerald-light);border-radius:6px;padding:2px 8px;margin-bottom:6px;background:rgba(28,157,112,0.1);}
+body.edit-on .pc-cat-edit{display:inline-block;}
 .filter-btn{
   padding:10px 22px;border-radius:30px;border:1px solid var(--line);font-size:13px;color:var(--ivory-dim);
   transition:all .25s;
@@ -418,6 +459,16 @@ body.edit-on .download-site-btn{display:block;}
       <div class="logo-mark"></div>
       <div class="logo-text">HKN <span>Libas</span> PK<small>Luxury Pakistani Fashion</small></div>
     </a>
+    <button class="search-toggle-btn" id="searchToggleBtn" title="Search products" aria-label="Search products">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+  </div>
+  <div class="search-box" id="searchBox">
+    <div class="search-box-inner">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search dresses, bedsheets, code..." autocomplete="off">
+      <button id="searchCloseBtn" aria-label="Close search">✕</button>
+    </div>
   </div>
   <nav class="main-nav" id="mainNav">
     <ul>
@@ -430,10 +481,7 @@ body.edit-on .download-site-btn{display:block;}
       <li><a href="javascript:void(0)" data-scroll="privacy">Privacy Policy</a></li>
     </ul>
   </nav>
-  <div class="mega-dropdown" id="megaDropdown">
-    <a href="javascript:void(0)" data-filter="" id="mdSummer">Summer Collection</a>
-    <a href="javascript:void(0)" data-filter="" id="mdWinter">Winter Collection</a>
-  </div>
+  <div class="mega-dropdown" id="megaDropdown"></div>
 </header>
 
 <div id="view-home">
@@ -474,10 +522,14 @@ body.edit-on .download-site-btn{display:block;}
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="ladies-summer">Ladies Summer</button>
       <button class="filter-btn" data-filter="ladies-winter">Ladies Winter</button>
+      <button class="filter-btn" data-filter="ladies-dulhan">Dulhan Collection</button>
+      <button class="filter-btn" data-filter="ladies-shadi-party">Shadi Party</button>
       <button class="filter-btn" data-filter="men-summer">Men Summer</button>
       <button class="filter-btn" data-filter="men-winter">Men Winter</button>
       <button class="filter-btn" data-filter="bedsheets">Bedsheets</button>
     </div>
+    <button class="add-product-btn" id="addProductBtn">+ Add New Product</button>
+    <div class="search-results-info" id="searchResultsInfo" style="display:none;"></div>
     <div class="product-grid" id="productGrid"></div>
   </div>
 </section>
@@ -660,7 +712,11 @@ const WA_NUMBER = "923226789775"; // +92 322 6789775, no + or spaces
   {id:"p8",code:"HKN-302",name:"Wool Blend Winter Coat",title:"Wool Blend Long Winter Coat for Men",desc:"A heavyweight wool-blend coat designed for maximum warmth during Pakistan's coldest months. Long-line cut with a tailored fit, pairs well with both traditional and western outfits.",cat:"men-winter",old:8200,price:6100,img:"https://images.unsplash.com/photo-1544923246-77307dd654cb?q=80&w=500&auto=format&fit=crop"},
   {id:"p9",code:"HKN-BED-01",name:"Floral 3D Bedsheet Set",title:"3D Floral Design Double Bedsheet Set",desc:"A vivid 3D-printed bedsheet set featuring a lifelike floral design with a soft, glossy finish. Includes 1 bedsheet and 2 pillow covers, made from high-quality fine cotton for a cool, comfortable feel.",cat:"bedsheets",old:4200,price:2999,img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=500&auto=format&fit=crop"},
   {id:"p10",code:"HKN-BED-02",name:"Royal Damask 3D Bedsheet Set",title:"3D Royal Damask Design King Size Bedsheet Set",desc:"A luxurious king-size 3D bedsheet set with an elegant damask pattern that adds depth and richness to any bedroom. Soft-touch fabric, fade-resistant print, includes matching pillow covers.",cat:"bedsheets",old:5500,price:3999,img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=500&auto=format&fit=crop"},
-  {id:"p11",code:"HKN-BED-03",name:"Geometric 3D Bedsheet Set",title:"3D Geometric Pattern Bedsheet Set for Bedroom",desc:"A modern geometric 3D-printed bedsheet set that brings a bold, contemporary look to your bedroom. Wrinkle-resistant fabric with vivid, long-lasting colors — includes 1 bedsheet and 2 pillow covers.",cat:"bedsheets",old:4800,price:3499,img:"https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=500&auto=format&fit=crop"}
+  {id:"p11",code:"HKN-BED-03",name:"Geometric 3D Bedsheet Set",title:"3D Geometric Pattern Bedsheet Set for Bedroom",desc:"A modern geometric 3D-printed bedsheet set that brings a bold, contemporary look to your bedroom. Wrinkle-resistant fabric with vivid, long-lasting colors — includes 1 bedsheet and 2 pillow covers.",cat:"bedsheets",old:4800,price:3499,img:"https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=500&auto=format&fit=crop"},
+  {id:"p12",code:"HKN-DUL-01",name:"Maroon Bridal Lehenga",title:"Heavy Embroidered Maroon Bridal Lehenga for Dulhan",desc:"A stunning heavy-embroidered bridal lehenga in deep maroon, finished with intricate zari and stone work. Designed to make the bride the center of attention on her big day.",cat:"ladies-dulhan",old:28000,price:21999,img:"https://images.unsplash.com/photo-1595341888016-a392ef81b7de?q=80&w=500&auto=format&fit=crop"},
+  {id:"p13",code:"HKN-DUL-02",name:"Gold Bridal Maxi",title:"Golden Embellished Bridal Maxi for Wedding Day",desc:"A regal golden bridal maxi featuring dense handwork and a flowing silhouette, perfect for the baraat or walima. Comes with a matching dupatta and heavy border work.",cat:"ladies-dulhan",old:32000,price:24999,img:"https://images.unsplash.com/photo-1583391733956-6c78276477e2?q=80&w=500&auto=format&fit=crop"},
+  {id:"p14",code:"HKN-SP-01",name:"Emerald Party Gharara Set",title:"Emerald Green Embroidered Gharara Set for Shadi Party",desc:"A vibrant emerald gharara set with fine embroidery, perfect for mehndi and wedding functions. Lightweight fabric ensures comfort through long celebrations.",cat:"ladies-shadi-party",old:9500,price:6999,img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=500&auto=format&fit=crop"},
+  {id:"p15",code:"HKN-SP-02",name:"Peach Sharara Party Set",title:"Peach Embellished Sharara Set for Wedding Parties",desc:"A soft peach sharara set with delicate embellishment, ideal for guests attending mehndi or nikkah functions. Elegant, comfortable, and photo-ready.",cat:"ladies-shadi-party",old:8500,price:6299,img:"https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?q=80&w=500&auto=format&fit=crop"}
 ];
 /*DEFAULT_PRODUCTS_END*/
 /*BANNER_START*/const DEFAULT_BANNER_IMAGES = DEFAULT_PRODUCTS.slice(0,6).map(p=>p.img);/*BANNER_END*/
@@ -727,6 +783,7 @@ let bannerImages = store.get("hkn_banner_images", DEFAULT_BANNER_IMAGES);
 let wishlist = store.get("hkn_wishlist", []);
 let textEdits = store.get("hkn_text_edits", DEFAULT_TEXT_EDITS);
 let currentFilter = "all";
+let searchQuery = "";
 
 /* ================= WHATSAPP LINKS ================= */
 function waLink(text){
@@ -798,12 +855,42 @@ function renderBannerEditSlots(){
 }
 
 /* ================= RENDER: PRODUCT GRID ================= */
+const CATEGORY_LABELS = {
+  "ladies-summer":"Ladies Summer","ladies-winter":"Ladies Winter",
+  "ladies-dulhan":"Dulhan Collection","ladies-shadi-party":"Shadi Party",
+  "men-summer":"Men Summer","men-winter":"Men Winter","bedsheets":"Bedsheets"
+};
 function renderProducts(){
   const grid = document.getElementById("productGrid");
+  const infoBox = document.getElementById("searchResultsInfo");
   grid.innerHTML = "";
-  const list = currentFilter === "all" ? products : products.filter(p=>p.cat===currentFilter);
+
+  let list;
+  if(searchQuery.trim() !== ""){
+    const q = searchQuery.trim().toLowerCase();
+    list = products.filter(p=>
+      (p.title||"").toLowerCase().includes(q) ||
+      (p.name||"").toLowerCase().includes(q) ||
+      (p.desc||"").toLowerCase().includes(q) ||
+      (p.code||"").toLowerCase().includes(q) ||
+      (CATEGORY_LABELS[p.cat]||"").toLowerCase().includes(q)
+    );
+    infoBox.style.display = "block";
+    infoBox.innerHTML = `Showing ${list.length} result${list.length===1?'':'s'} for "<strong style="color:var(--gold-light);">${searchQuery}</strong>"<button id="clearSearchBtn">Clear search</button>`;
+    document.getElementById("clearSearchBtn").addEventListener("click", clearSearch);
+  } else {
+    infoBox.style.display = "none";
+    infoBox.innerHTML = "";
+    list = currentFilter === "all" ? products : products.filter(p=>p.cat===currentFilter);
+  }
+
+  if(list.length === 0){
+    grid.innerHTML = `<div class="no-results"><h3>No items found</h3><p>Try a different search term, or message us on WhatsApp and we'll help you find it.</p></div>`;
+    return;
+  }
+
   list.forEach(p=>{
-    const discount = Math.round(((p.old - p.price)/p.old)*100);
+    const discount = p.old ? Math.round(((p.old - p.price)/p.old)*100) : 0;
     const isWished = wishlist.includes(p.id);
     const card = document.createElement("div");
     card.className = "product-card";
@@ -812,11 +899,13 @@ function renderProducts(){
         <img src="${p.img}" alt="${p.title || p.name}" data-id="${p.id}" class="pc-img" onerror="this.style.display='none'">
         <span class="badge-discount">-${discount}%</span>
         <button class="wishlist-btn ${isWished?'active':''}" data-id="${p.id}">${isWished?'♥':'♡'}</button>
+        <button class="pc-delete-btn" data-id="${p.id}" title="Delete this product">✕</button>
         <button class="img-edit-btn" data-id="${p.id}">Change Image</button>
         <input type="file" accept="image/*" class="img-file-input" data-id="${p.id}" style="display:none;">
       </div>
       <div class="pc-body">
         <div class="pc-code editable-hit" data-id="${p.id}" data-field="code">${p.code}</div>
+        <div class="pc-cat-edit" data-id="${p.id}">📁 ${CATEGORY_LABELS[p.cat] || p.cat}</div>
         <div class="pc-title editable-hit" data-id="${p.id}" data-field="title">${p.title || p.name}</div>
         <p class="pc-desc editable-hit" data-id="${p.id}" data-field="desc">${p.desc || ""}</p>
         <div class="pc-price">
@@ -843,6 +932,43 @@ function attachProductEvents(){
       store.set("hkn_wishlist", wishlist);
       renderProducts();
     };
+  });
+
+  // delete product
+  document.querySelectorAll(".pc-delete-btn").forEach(btn=>{
+    btn.onclick = (e)=>{
+      e.preventDefault();
+      const id = btn.dataset.id;
+      const prod = products.find(p=>p.id===id);
+      if(!prod) return;
+      if(!confirm(`Delete "${prod.title || prod.name}"? This cannot be undone.`)) return;
+      products = products.filter(p=>p.id!==id);
+      store.set("hkn_products", products);
+      wishlist = wishlist.filter(x=>x!==id);
+      store.set("hkn_wishlist", wishlist);
+      renderProducts();
+      renderRing();
+    };
+  });
+
+  // category change
+  document.querySelectorAll(".pc-cat-edit").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      if(!document.body.classList.contains("edit-on")) return;
+      const id = el.dataset.id;
+      const prod = products.find(p=>p.id===id);
+      if(!prod) return;
+      const catKeys = Object.keys(CATEGORY_LABELS);
+      const list = catKeys.map((k,i)=>`${i+1}. ${CATEGORY_LABELS[k]}`).join("\n");
+      const choice = prompt(`Choose a category number:\n${list}`, catKeys.indexOf(prod.cat)+1);
+      if(choice===null) return;
+      const idx = parseInt(choice,10) - 1;
+      if(idx>=0 && idx<catKeys.length){
+        prod.cat = catKeys[idx];
+        store.set("hkn_products", products);
+        renderProducts();
+      }
+    });
   });
 
   // editable text fields (code/name/description/price/old)
@@ -925,11 +1051,13 @@ document.getElementById("filterBar").addEventListener("click",(e)=>{
   document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
   currentFilter = btn.dataset.filter;
+  searchQuery = "";
+  if(searchInput) searchInput.value = "";
   renderProducts();
 });
 // category cards also filter (mega-dropdown links have their own dedicated handler)
 document.querySelectorAll("[data-filter]").forEach(el=>{
-  if(el.classList.contains("filter-btn") || el.id==="mdSummer" || el.id==="mdWinter") return;
+  if(el.classList.contains("filter-btn")) return;
   el.addEventListener("click",(e)=>{
     const f = el.dataset.filter;
     if(!f) return;
@@ -946,6 +1074,77 @@ document.querySelectorAll("[data-filter]").forEach(el=>{
 /* ================= EDIT MODE TOGGLE ================= */
 document.getElementById("editToggle").addEventListener("click",()=>{
   document.body.classList.toggle("edit-on");
+});
+
+/* ================= SEARCH ================= */
+const searchToggleBtn = document.getElementById("searchToggleBtn");
+const searchBox = document.getElementById("searchBox");
+const searchInput = document.getElementById("searchInput");
+const searchCloseBtn = document.getElementById("searchCloseBtn");
+
+function openSearchBox(){
+  searchBox.classList.add("open");
+  searchToggleBtn.classList.add("active");
+  setTimeout(()=>searchInput.focus(), 150);
+}
+function closeSearchBox(){
+  searchBox.classList.remove("open");
+  searchToggleBtn.classList.remove("active");
+}
+function clearSearch(){
+  searchQuery = "";
+  searchInput.value = "";
+  showView("home");
+  renderProducts();
+}
+function liveSearch(){
+  searchQuery = searchInput.value;
+  showView("home");
+  renderProducts();
+}
+function runSearch(){
+  searchQuery = searchInput.value;
+  showView("home");
+  renderProducts();
+  setTimeout(()=>{ document.getElementById("products").scrollIntoView({behavior:"smooth"}); }, 50);
+}
+
+searchToggleBtn.addEventListener("click", ()=>{
+  if(searchBox.classList.contains("open")) closeSearchBox();
+  else openSearchBox();
+});
+searchCloseBtn.addEventListener("click", closeSearchBox);
+searchInput.addEventListener("keydown", (e)=>{
+  if(e.key === "Enter"){ runSearch(); }
+  if(e.key === "Escape"){ closeSearchBox(); }
+});
+searchInput.addEventListener("input", ()=>{
+  // live filter as they type, without auto-scrolling (Enter scrolls to results)
+  liveSearch();
+});
+
+/* ================= ADD NEW PRODUCT ================= */
+document.getElementById("addProductBtn").addEventListener("click", ()=>{
+  const catKeys = Object.keys(CATEGORY_LABELS);
+  const list = catKeys.map((k,i)=>`${i+1}. ${CATEGORY_LABELS[k]}`).join("\n");
+  const choice = prompt(`Add new product — choose a category number:\n${list}`, "1");
+  if(choice===null) return;
+  const idx = parseInt(choice,10) - 1;
+  const cat = (idx>=0 && idx<catKeys.length) ? catKeys[idx] : catKeys[0];
+  const newId = "p" + Date.now();
+  const placeholderImg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='650'><rect width='100%' height='100%' fill='%23141311'/><text x='50%' y='50%' fill='%23c9a24a' font-size='24' text-anchor='middle' font-family='sans-serif'>Add Photo</text></svg>";
+  products.push({
+    id:newId, code:"HKN-NEW", name:"New Product", title:"New Product — Click to Edit Title",
+    desc:"Click here to add a description.", cat:cat, old:0, price:0, img:placeholderImg
+  });
+  store.set("hkn_products", products);
+  currentFilter = cat;
+  document.querySelectorAll(".filter-btn").forEach(b=>{
+    b.classList.toggle("active", b.dataset.filter===cat);
+  });
+  renderProducts();
+  renderRing();
+  setTimeout(()=>{ document.getElementById("productGrid").scrollIntoView({behavior:"smooth", block:"center"}); }, 50);
 });
 
 /* ================= DOWNLOAD UPDATED WEBSITE (bakes all edits in permanently) ================= */
@@ -1025,14 +1224,41 @@ document.querySelectorAll("[data-scroll]").forEach(link=>{
 
 /* ================= DROPDOWN CLICK TOGGLE (Ladies/Men Collection) ================= */
 const megaDropdown = document.getElementById("megaDropdown");
-const mdSummer = document.getElementById("mdSummer");
-const mdWinter = document.getElementById("mdWinter");
 let activeToggle = null;
+
+const COLLECTION_OPTIONS = {
+  ladies: [
+    {label:"Summer Collection", filter:"ladies-summer"},
+    {label:"Winter Collection", filter:"ladies-winter"},
+    {label:"Dulhan Collection", filter:"ladies-dulhan"},
+    {label:"Shadi Party Collection", filter:"ladies-shadi-party"}
+  ],
+  men: [
+    {label:"Summer Collection", filter:"men-summer"},
+    {label:"Winter Collection", filter:"men-winter"}
+  ]
+};
 
 function openMegaDropdown(toggle){
   const collection = toggle.dataset.collection; // "ladies" or "men"
-  mdSummer.dataset.filter = `${collection}-summer`;
-  mdWinter.dataset.filter = `${collection}-winter`;
+  const options = COLLECTION_OPTIONS[collection] || [];
+  megaDropdown.innerHTML = options.map(opt=>
+    `<a href="javascript:void(0)" data-filter="${opt.filter}">${opt.label}</a>`
+  ).join("");
+  megaDropdown.querySelectorAll("a").forEach(link=>{
+    link.addEventListener("click",(e)=>{
+      e.preventDefault();
+      showView("home");
+      const f = link.dataset.filter;
+      currentFilter = f;
+      document.querySelectorAll(".filter-btn").forEach(b=>{
+        b.classList.toggle("active", b.dataset.filter===f);
+      });
+      renderProducts();
+      closeMegaDropdown();
+      setTimeout(()=>{ document.getElementById("products").scrollIntoView({behavior:"smooth"}); }, 50);
+    });
+  });
   const rect = toggle.getBoundingClientRect();
   const headerBottom = document.querySelector("header").getBoundingClientRect().bottom;
   megaDropdown.style.top = headerBottom + 8 + "px";
@@ -1064,20 +1290,6 @@ document.querySelectorAll(".dropdown-toggle").forEach(toggle=>{
     e.stopPropagation();
     if(activeToggle === toggle){ closeMegaDropdown(); }
     else{ openMegaDropdown(toggle); }
-  });
-});
-[mdSummer, mdWinter].forEach(link=>{
-  link.addEventListener("click",(e)=>{
-    e.preventDefault();
-    showView("home");
-    const f = link.dataset.filter;
-    currentFilter = f;
-    document.querySelectorAll(".filter-btn").forEach(b=>{
-      b.classList.toggle("active", b.dataset.filter===f);
-    });
-    renderProducts();
-    closeMegaDropdown();
-    setTimeout(()=>{ document.getElementById("products").scrollIntoView({behavior:"smooth"}); }, 50);
   });
 });
 document.addEventListener("click",(e)=>{
